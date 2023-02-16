@@ -13,5 +13,10 @@ Finally, I learned about the use of AWS CloudWatch Alarms to monitor key perform
 
 Overall, Week-0 was a great introduction to the key AWS services and tools that we will be using throughout the bootcamp. I'm looking forward to continuing to learn and explore how we can best leverage these services to build secure and scalable cloud architectures for our project.
 
+#Required Homework
+
+## Recreate Conceptual Diagram using Lucid Chart
+
+![]()
 
 The Solution to the Assignemnt of week 0 is as follows:
