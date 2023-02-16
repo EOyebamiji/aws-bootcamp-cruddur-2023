@@ -3,7 +3,7 @@
     "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 1$",
     "ActionsEnabled": true,
     "AlarmActions": [
-        "arn:aws:sns:us-west-1:572891318033:Billing Alarm For One Dollar Limit"
+        "arn:aws:sns:us-east-1:572891318033:Billing Alarm For One Dollar Limit"
     ],
     "EvaluationPeriods": 1,
     "DatapointsToAlarm": 1,
