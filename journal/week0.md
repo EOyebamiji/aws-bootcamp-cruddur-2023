@@ -20,10 +20,12 @@ The Solution to the Assignemnt of week 0 is as follows:
 ## Recreate Conceptual Diagram in Lucid Charts
 
 ![Conceptual Diagram in Lucid Charts](assets/Week-0/Lucid%20Conceptual%20sketch.PNG)
+You can view here >>> [Conceptual Diagram in Lucid Charts](https://lucid.app/lucidchart/455fe163-12c5-4d1a-aa2f-50814ada8bbc/edit?viewport_loc=-1156%2C-710%2C3288%2C1674%2C0_0&invitationId=inv_bbc21a1a-a061-43ac-a224-a9b128c733dd)
 
 ## Recreate Logical Architectual Diagram in Lucid Charts
 
 ![Logical Diagram in Lucid Charts](assets/Week-0/Lucid%20Logical%20Diagram.PNG)
+You can view here >>> [Logical Diagram in Lucid Charts](https://lucid.app/lucidchart/8f2f06b6-1e26-4b83-ae98-ef7d4fcd81f6/edit?view_items=8zPxB~y6JEtN&invitationId=inv_df154176-32fb-453c-a1b1-7b7341f868e4)
 
 ## Create an Admin User
 
