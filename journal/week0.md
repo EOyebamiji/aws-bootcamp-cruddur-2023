@@ -13,10 +13,32 @@ Finally, I learned about the use of AWS CloudWatch Alarms to monitor key perform
 
 Overall, Week-0 was a great introduction to the key AWS services and tools that we will be using throughout the bootcamp. I'm looking forward to continuing to learn and explore how we can best leverage these services to build secure and scalable cloud architectures for our project.
 
-#Required Homework
-
-## Recreate Conceptual Diagram using Lucid Chart
-
-![]()
-
 The Solution to the Assignemnt of week 0 is as follows:
+
+# Required Homework
+
+## Recreate Conceptual Diagram in Lucid Charts
+
+![Conceptual Diagram in Lucid Charts](assets/Week-0/Lucid%20Conceptual%20sketch.PNG)
+
+## Recreate Logical Architectual Diagram in Lucid Charts
+
+![Logical Diagram in Lucid Charts](assets/Week-0/Lucid%20Logical%20Diagram.PNG)
+
+## Create an Admin User
+
+![Admin User]()
+
+## Use CloudShell
+
+![CloudShell]()
+
+## Create a Billing Alarm
+I created a billing alarm 
+
+![Billing Alarm]()
+
+## Create a Budget
+I created a $1 budget limit using the GUI to keep my spending under the free tier as much as possible except in situations i cannot control. I creatd an alert of an 80% treshold which allows me review running/active services to avoid incuring any unwanted bills. I avoided creating multiple budgets to stay within the AWS Freee tier of two budgets.
+![Budget](assets/Week-0/Budget-Alarm.PNG)
+
