@@ -63,3 +63,6 @@ I created a $1 budget limit using the GUI to keep my spending under the free tie
 
 ![Budget](assets/Week-0/Budget-Alarm.PNG)
 
+
+# Homework Challenges
+
