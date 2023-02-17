@@ -27,18 +27,33 @@ You can view here >>> [Conceptual Diagram in Lucid Charts](https://lucid.app/luc
 ![Logical Diagram in Lucid Charts](assets/Week-0/Lucid%20Logical%20Diagram.PNG)
 You can view here >>> [Logical Diagram in Lucid Charts](https://lucid.app/lucidchart/8f2f06b6-1e26-4b83-ae98-ef7d4fcd81f6/edit?view_items=8zPxB~y6JEtN&invitationId=inv_df154176-32fb-453c-a1b1-7b7341f868e4)
 
-## Create an Admin User
-
-![Admin User]()
-
-## Use CloudShell
-
-![CloudShell]()
-
 ## Create a Billing Alarm
-I created a billing alarm 
+In order to create a billing alarm, a few requirements needs to be checked, such as creating a SNS Topic with a designated billing name. SNS Topic was created using the below code via the cli.
+```
+aws sns create-topic --name billing-alarm
+```
+![SNS Topic](assets/Week-0/SNS%20Topic.PNG)
 
-![Billing Alarm]()
+On creation of the SNS Topic, a TopicARN is generated which is required to create the next requirement for this task which is the subscription. This was created using the below code via the cli.
+```
+aws sns subscribe \
+    --topic-arn TopicARN \
+    --protocol email \
+    --notification-endpoint your@email.com
+```
+![SNS Subscription](assets/Week-0/Billing%20Alarm.PNG)
+
+AWS requires a confirmation via mail (preferably) or via the AWS GUI before the Subscription created is activated. I confirmed the subscription creation notice via mail.
+
+![AWS SNS](assets/Week-0/AWS%20SNS.PNG)
+
+Next requirement is to create the alarm via aws CloudWatch, for this step a Json file was adopted to make the creation process easier and faster. The below code as used via the cli with the path to the Json configuration file where i created an alerm which will send me a notification when I cross the $1 limit i configured.
+```
+aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
+```
+![CLI COnfig for CloudWatch](assets/Week-0/CloudWatch.PNG)
+Once the above step is completed, the Billing Alarm is created
+![Billing Alarm](assets/Week-0/CloudWatch%20Overview.PNG)
 
 ## Create a Budget
 I created a $1 budget limit using the GUI to keep my spending under the free tier as much as possible except in situations i cannot control. I creatd an alert of an 80% treshold which allows me review running/active services to avoid incuring any unwanted bills. I avoided creating multiple budgets to stay within the AWS Freee tier of two budgets.
