@@ -48,14 +48,18 @@ AWS requires a confirmation via mail (preferably) or via the AWS GUI before the 
 ![AWS SNS](assets/Week-0/AWS%20SNS.PNG)
 
 Next requirement is to create the alarm via aws CloudWatch, for this step a Json file was adopted to make the creation process easier and faster. The below code as used via the cli with the path to the Json configuration file where i created an alerm which will send me a notification when I cross the $1 limit i configured.
+You can view here >>> [Json Configuration File](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/main/aws/json/alarm_config.json)
 ```
 aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
 ```
 ![CLI COnfig for CloudWatch](assets/Week-0/CloudWatch.PNG)
+
 Once the above step is completed, the Billing Alarm is created
+
 ![Billing Alarm](assets/Week-0/CloudWatch%20Overview.PNG)
 
 ## Create a Budget
 I created a $1 budget limit using the GUI to keep my spending under the free tier as much as possible except in situations i cannot control. I creatd an alert of an 80% treshold which allows me review running/active services to avoid incuring any unwanted bills. I avoided creating multiple budgets to stay within the AWS Freee tier of two budgets.
+
 ![Budget](assets/Week-0/Budget-Alarm.PNG)
 
