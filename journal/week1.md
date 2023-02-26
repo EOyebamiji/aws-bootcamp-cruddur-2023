@@ -4,8 +4,8 @@
 Week 1 covered the next stage of our bootcamp process, which was [containerization](#containerization) of our application (Crudder) and testing all components of the application to ensure its readiness for deployment.
 
 # Required Homework
-[Containerize Backend and Frontend Application](#containerize-backend-and-frontend)
-  In containerizing our application, we needed to use a package manager called "NPM" to install a.... we did the following for our application:
+## Containerize Backend and Frontend Application
+  In containerizing our application, we needed to use a [package manager](#package-manager) called "NPM" to automate the installation and management of our software packages. we did the following for our application:
 
   Frontend:
   ```sh
@@ -85,21 +85,120 @@ CMD ["npm", "start"]
 
 ```
 
+After creating our Dockerfile, we proceeded to building our container using the Dockerfile we created.
 
+```
+docker build -t frontend-react-js ./frontend-react-js       # Building the frontend container
+docker build -t backend-flask ./backend-flask               # Building the backend conatiner
+```
+After building our container, we run the container
 
-After creating our Dockerfile 
+```
+docker run -p 3000:3000 -d frontend-react-js                # Running the frontend container in background mode with specific port for access
+docker run -p 4567:4567 -d backend-flask                  # Running the backendend container in background mode with specific port for access
+```
+We can confirm that our container is running and frontend image built
+
+```
+docker ps
+docker images
+docker ps -a
+```
+
+Next step was to create a [Docker-Compose](#) file to handle mutiple containers as this will help us automate the need to build the frontend and backend simulteaneously rather than the manual method we used earlier through Dockerfile
+
+At the root directory of our repository/project, we created a docker compose file
+
+```sh
+cd aws-bootcamp-crudder-2023
+touch docker-compose.yml
+```
+
+We then added the following YAML code into our created docker-compose file
+
+```YAML
+version: "3.8"
+services:
+  backend-flask:
+    environment:
+      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+    build: ./backend-flask
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./backend-flask:/backend-flask
+  frontend-react-js:
+    environment:
+      REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+    build: ./frontend-react-js
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend-react-js:/frontend-react-js
+
+# the name flag is a hack to change the default prepend folder
+# name when outputting the image names
+networks: 
+  internal-network:
+    driver: bridge
+    name: cruddur
+```
+The above YAML script now allow us automate the builiding and running of our frontend and backend container
+
+```
+docker-compose up
+```
+After ```docker compose up``` command was executed, we can confirm that our frontend and backend applications are both running on their respective ports 3000 and 4567.
 
   - [Updating the OpenAPI definitions](#updating-the-openapi-definitions)
   - [Updating the backend and frontend code to add notifications functionality](#updating-the-backend-and-frontend-code-to-add-notifications-functionality)
   - [DynamoDB Local and PostgreSQL](#dynamodb-local-and-postgresql)
+  We added a dynamodb database and postgres to reference our containers and 
+
+DynamoDB
+  ```YAML
+  dynamodb-local:
+    # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
+    # We needed to add user:root to get this working.
+    user: root
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+  ```
   
+  Postgres
+  ```YAML
+    db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+
+  ```
 
 
 ## Definition of terms
 ### Containerization
 Containerization is a way of packaging software applications and their dependencies into a standalone, portable unit called a container. Containers provide a consistent and isolated environment for applications to run in, regardless of the underlying infrastructure. This means that applications can be easily moved between different environments, such as from a developer's laptop to a test environment or a production server, without the need for additional configuration or setup.
+
+### Container
+Container is a standard unit of software that packages application codes and its dependencies into a single object. It is a layer of images with a linux baseline.
+
+### Package Manager
+A package manager is a tool that automates the process of installing, upgrading, configuring, and removing software packages. It manages the dependencies between packages, ensuring that all required software is installed and configured correctly. Package managers are used to simplify the installation and management of software on a system.
 ### Docker
-Docker is a popular tool for creating and managing containers. It provides an easy-to-use interface for building, deploying, and running applications in containers. With Docker, you can package your application and its dependencies into a container, which can then be deployed to any environment that supports Docker. This makes it easier to move your application between different environments, such as development, testing, and production. Docker also provides a way to share and distribute container images, allowing others to quickly and easily run your application in their own environment. Overall, Docker simplifies the process of building, deploying, and managing applications, making it a popular tool for developers and DevOps teams.
+Docker is a PAAS product that uses OS-level virtualization to deliver software in packages called [containers](#container). It is a software platform that simplifies the process of building, running, managing and distributing applications.
 
 ### Dockerfile
 A Dockerfile is a text file that contains instructions for building a Docker image. An image is a packaged, standalone executable software package that includes everything needed to run an application, including the application code, libraries, and other dependencies.
