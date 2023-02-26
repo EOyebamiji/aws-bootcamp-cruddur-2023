@@ -105,7 +105,7 @@ docker images
 docker ps -a
 ```
 
-Next step was to create a [Docker-Compose](#) file to handle mutiple containers as this will help us automate the need to build the frontend and backend simulteaneously rather than the manual method we used earlier through Dockerfile
+Next step was to create a [Docker-Compose](#docker-compose) file to handle mutiple containers as this will help us automate the need to build the frontend and backend simulteaneously rather than the manual method we used earlier through Dockerfile
 
 At the root directory of our repository/project, we created a docker compose file
 
@@ -204,6 +204,11 @@ Docker is a PAAS product that uses OS-level virtualization to deliver software i
 A Dockerfile is a text file that contains instructions for building a Docker image. An image is a packaged, standalone executable software package that includes everything needed to run an application, including the application code, libraries, and other dependencies.
 The Dockerfile provides a set of instructions for the Docker engine to create an image. It contains information such as what base image to use, what software packages to install, what files to copy into the image, and what commands to run. The Dockerfile can also set environment variables and define other configuration options.
 Once the Dockerfile is created, it can be used to build an image using the Docker build command. The resulting image can then be used to create and run containers that contain the application. Overall, a Dockerfile is a way to automate the creation of Docker images, making it easier to manage and deploy applications in containers.
+
+### Docker Compose
+Docker Compose is a tool that allows you to define and run multi-container Docker applications. It is used to simplify the management of multiple Docker containers by allowing you to define them all in a single configuration file.
+With Docker Compose, you can define the containers, their dependencies, and their configuration all in one YAML file. You can then start and stop the containers using simple commands, and Docker Compose will handle the orchestration of the containers, including their network connections and volume sharing.
+Docker Compose is particularly useful for developing and testing multi-container applications, as it allows you to easily spin up a complete development environment with all the necessary containers.
 # Homework Challenges
 + [Run the Dockerfile CMD as an external script](#run-the-dockerfile-cmd-as-an-external-script)
 + [Pushing and tagging image to Docker Hub](#pushing-and-tagging-image-to-docker-hub)
