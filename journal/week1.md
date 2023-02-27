@@ -327,7 +327,40 @@ I implemented a health check in my docker-compose to check the health of my dock
 ![healthcheck](assets/Week-1/docker%20health.PNG)
 
 
+## Best practise to follow when writing a Dockerfile
 
+  + Use a small base image: Choose a small base image such as Alpine Linux. This will help reduce the size of our final image and improve its efficiency.
+We adhered to this practise as we specified our base line image
+```Dockerfile
+FROM python:3.10-slim-buster
+```
+
+  + Only install necessary packages: Only install the packages and dependencies that are necessary for our application to run. This will help reduce the size of the final image and minimize the risk of security vulnerabilities.
+We adhered to this practise as we specified our equirements in the requirements.txt file which we refrenced in our Dockerfile
+```Dockerfile
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+```
+
+  + Use specific versions of packages: Use specific versions of packages instead of the latest version. This will help ensure that your application works as expected and reduces the risk of compatibility issues.
+Our dockerfile didn't adhered to this principle as we didn't the version for our npm (our frontend dockerfile)
+```Dockerfile
+RUN npm install
+```
+
+  + Use a non-root user: Use a non-root user in your Dockerfile to run your application. This helps to improve security and reduce the risk of potential attacks.
+We didn't specify a user in our Dockerfile which means the root user is  being utilised for our 
+
+  + Use multi-stage builds: Use multi-stage builds to reduce the size of the final image. This involves using multiple Dockerfiles, with each one building on the previous one and discarding unnecessary files along the way.
+Our Dockerfile did not use multi-stage builds, which may result in a larger final image size.
+
+  + Use environment variables: Use environment variables in your Dockerfile to make it easier to configure your application. This will help simplify the deployment process and make it easier to manage.
+Our Dockerfile uses an environment variable to set the Flask environment, which is follows best practices.
+
+  + Use a .dockerignore file: Use a .dockerignore file to exclude unnecessary files and directories from being included in the final image. This will help reduce the size of the final image and improve its efficiency.
+We used a .gitignore file to specifiy exclusions
+
+  + Keep your Dockerfile simple: Keep your Dockerfile simple and easy to understand. This will help make it easier for others to use and maintain your Dockerfile.
 
 
 ## Definition of terms
