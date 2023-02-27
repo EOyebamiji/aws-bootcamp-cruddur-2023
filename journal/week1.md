@@ -14,9 +14,11 @@ Week 1 covered the next stage of our bootcamp process, which was [containerizati
   ```
 After using the above code, we confirmed that our backend application was in good shape.
 + Ports were open and made public
+
 ![Frontend Open Ports](assets/Week-1/Open%20Port%203000.PNG)
 
 + The front accessible over the web
+
 ![Frontend Home](assets/Week-1/home-frontend.PNG)
 
 Backend:
@@ -29,9 +31,11 @@ Backend:
 ```
 After using the above code, we confirmed that our backend application was in good shape.
 + Ports were open and made public
+
 ![Open Ports](assets/Week-1/Open%20Port%204567.PNG)
 
 + The backend accessible over the web ``` /api/activities/home ```
+
 ![Backend Home](assets/Week-1/api-activites-home-backend.PNG)
 
 
@@ -151,10 +155,34 @@ docker-compose up
 ```
 After ```docker compose up``` command was executed, we can confirm that our frontend and backend applications are both running on their respective ports 3000 and 4567.
 
-  - [Updating the OpenAPI definitions](#updating-the-openapi-definitions)
-  - [Updating the backend and frontend code to add notifications functionality](#updating-the-backend-and-frontend-code-to-add-notifications-functionality)
-  - [DynamoDB Local and PostgreSQL](#dynamodb-local-and-postgresql)
-  We added a dynamodb database and postgres to reference our containers and 
+![docker-compose](assets/Week-1/docker-compose-up.PNG)
+
+## Updating the OpenAPI definitions
+
+We added definitions for Notifications in our OpenAI document.
+
+![OpenAI](assets/Week-1/openai.PNG)
+
+
+## Updating the backend and frontend code to add notifications functionality
+Backend:
+
+We created a [Notifications](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/bc982e45d03617f0056cecfcb2362084061ac787/backend-flask/services/notifications_activities.py) file in our backend to handle our backend activities.
+
+![Backend-Notification](assets/Week-1/Backend-Notification%20activities.PNG)
+
+![notification-web](assets/Week-1/api-activities-notifications.PNG)
+
+
+Frontend:
+
+We created a [Notifications Feed Page](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/857889b2f3692f839be106c7832c58ef48d5d60d/frontend-react-js/src/pages/NotificationsFeedPage.js) file in our frontend to provide a UI for our notifications page.
+
+![notification-ui](assets/Week-1/notifications%20UI.PNG)
+
+## DynamoDB Local and PostgreSQL
+
+We added a dynamodb database and postgres to reference our containers and 
 
 DynamoDB
   ```YAML
@@ -186,6 +214,120 @@ DynamoDB
       - db:/var/lib/postgresql/data
 
   ```
+I tested connection to the postgres database created and added the posgres installation to [gitpod](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/347bb23c91a537bba11a8228321e291a2e52c46a/.gitpod.yml)
+
+![postgres](assets/Week-1/postgress-connection-gui.PNG)
+
+![postgress](assets/Week-1/postgress-connection-success.PNG)
+
+![postgress-gitpod](assets/Week-1/added-postgres-to-gitpodyaml.PNG)
+
+
+# Challenges Faced
+
+After adding the dynamodb and postgres feature to our codebase, I realised i had a broken UI as the Navigation tags in my UI were missing. I modified the [Desktop Navigation](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/347bb23c91a537bba11a8228321e291a2e52c46a/frontend-react-js/src/components/DesktopNavigation.js) file to resolve this
+
+# Homework Challenges
+## Run the Dockerfile CMD as an external script
+ 
+ - I created a [flask](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/main/backend-flask/flask.sh) script with the content in the backend directory
+
+ ```
+#!/bin/bash
+python3 -m flash run --host=0.0.0.0 --port=4567
+ ```
+ - I Modified the Dockerfile to accomodate my new changes
+
+```Dockerfile
+FROM python:3.10-slim-buster
+
+WORKDIR /backend-flask
+
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+COPY flask.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/flask.sh
+
+ENV FLASK_ENV=development
+
+EXPOSE ${PORT}
+
+CMD ["/usr/local/bin/flask.sh"]
+```
+![dockerfile](assets/Week-1/dockerfile.PNG)
+
+ - I built the container
+```
+docker build -t backend-flask ./backend-flask
+```
+
+![docker-build](assets/Week-1/docker%20build%20-%20homework%20challenge.PNG)
+
+ - I ran the container with specifying the required enviromental variables and port to be opened
+
+```
+docker run -d --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+```
+
+![docker-run](assets/Week-1/docker%20run%20-%20homework%20challenge.PNG)
+
+
+## Pushing and tagging image to Docker Hub
+
+ - I logged into my DockerHub account via the CLI and Docker Extensionn
+
+```
+docker login
+```
+![docker-login](assets/Week-1/docker-login-ui-cli.PNG)
+
+ - I tagged the image
+```
+docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+docker tag backend-flask eoyebamiji/cruddur-backend-flask:1.0
+```
+
+ - I pushed the tagged image to Dockerhub and verified that that the image now resides on my dockerhub
+
+```
+docker push eoyebamiji/cruddur-backend-flask:1.0
+```
+![docker-push](assets/Week-1/docker-push.PNG)
+
+![docker-push](assets/Week-1/docker-push-gui.PNG)
+
+![docker-push](assets//Week-1/docker-push-web.PNG)
+
+ - I deleted my dockerhub credentials from the cli as it was saved in plain text in ``` ~/.docker/config.json ```
+
+ ```
+docker logout
+ ```
+
+ ![docker-logout](assets/Week-1/docker%20logout.PNG)
+
+## Implementing the healthcheck in docker-compose
+
+I implemented a health check in my docker-compose to check the health of my docker images and containers when running
+
+```YAML
+    healthcheck:
+      test: curl --fail https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/api/activities/home
+      interval: 30s
+      timeout: 10s
+      retries: 3
+```
+
+![healthcheck](assets/Week-1/healthcheck.PNG)
+
+![healthcheck](assets/Week-1/docker%20health.PNG)
+
+
+
 
 
 ## Definition of terms
@@ -209,8 +351,3 @@ Once the Dockerfile is created, it can be used to build an image using the Docke
 Docker Compose is a tool that allows you to define and run multi-container Docker applications. It is used to simplify the management of multiple Docker containers by allowing you to define them all in a single configuration file.
 With Docker Compose, you can define the containers, their dependencies, and their configuration all in one YAML file. You can then start and stop the containers using simple commands, and Docker Compose will handle the orchestration of the containers, including their network connections and volume sharing.
 Docker Compose is particularly useful for developing and testing multi-container applications, as it allows you to easily spin up a complete development environment with all the necessary containers.
-# Homework Challenges
-+ [Run the Dockerfile CMD as an external script](#run-the-dockerfile-cmd-as-an-external-script)
-+ [Pushing and tagging image to Docker Hub](#pushing-and-tagging-image-to-docker-hub)
-+ [Multi-stage Build](#multi-stage-build)
-+ [Implementing the healthcheck in docker-compose](#implementing-the-healthcheck-in-docker-compose)
