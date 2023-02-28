@@ -41,27 +41,6 @@ export default function DesktopNavigation(props) {
       {notificationsLink}
       {messagesLink}
       {profileLink}
-      <DesktopNavigationLink url="/notifications" 
-        name="Notifications"
-        handle="notifications"
-        active={props.active} />
-      {notificationsLink}
-      {messagesLink}
-      {profileLink}
-      <DesktopNavigationLink url="/messages" 
-        name="Messages"
-        handle="messages"
-        active={props.active} />
-      {notificationsLink}
-      {messagesLink}
-      {profileLink}
-      <DesktopNavigationLink url="/profile" 
-        name="Profile"
-        handle="profile"
-        active={props.active} />
-      {notificationsLink}
-      {messagesLink}
-      {profileLink}
       <DesktopNavigationLink url="/#" 
         name="More" 
         handle="more"
