@@ -19,7 +19,7 @@ After using the above code, we confirmed that our backend application was in goo
 
 + The front accessible over the web
 
-![Frontend Home](assets/Week-1/home-frontend.PNG)
+![Frontend Home](assets/Week-1/update-frontend.PNG)
 
 Backend:
   ```sh
@@ -178,7 +178,7 @@ Frontend:
 
 We created a [Notifications Feed Page](https://github.com/EOyebamiji/aws-bootcamp-cruddur-2023/blob/857889b2f3692f839be106c7832c58ef48d5d60d/frontend-react-js/src/pages/NotificationsFeedPage.js) file in our frontend to provide a UI for our notifications page.
 
-![notification-ui](assets/Week-1/notifications%20UI.PNG)
+![notification-ui](assets/Week-1/Updated-Notofications.PNG)
 
 ## DynamoDB Local and PostgreSQL
 
