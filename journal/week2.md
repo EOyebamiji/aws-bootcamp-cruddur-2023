@@ -18,7 +18,11 @@ we added new dependencies into our application for creating new datasets and que
 
 + Instrument AWS X-Ray into backend flask application
     + I completed all the task as shown in the livestream
-        ![X-ray](assets/Week-2/)
+
+        ![X-ray](assets/Week-2/aws%20xray%20create%20group.PNG)
+        ![X-ray](assets/Week-2/aws%20xray%20create%20sample%20gui.PNG)
+        ![X-ray](assets/Week-2/aws%20xray%20create%20sample.PNG)
+
     + I Configured and provisioned X-Ray daemon within docker-compose and send data back to X-Ray API
     ```yaml
     AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
@@ -36,15 +40,18 @@ we added new dependencies into our application for creating new datasets and que
     ```
 
 + Observed X-Ray traces within the AWS Console
-        ![Xrya-Traces](assets/Week-2/Xray%20traces%20GUI.PNG)
-        ![Xrya-Traces](assets/Week-2/xray-traces.PNG)
+
+    ![Xrya-Traces](assets/Week-2/Xray%20traces%20GUI.PNG)
+    ![Xrya-Traces](assets/Week-2/xray-traces.PNG)
 
 ## Rollbar
 + Integrated Rollbar for Error Logging
+
     ![Rollbar](assets/Week-2/Rollbar.PNG)
     ![Rollbar](assets/Week-2/Rollbar%20Hello%20World.PNG)
 
     + I Triggered an error an observe an error with Rollbar
+
         ![Rollbar-Error](assets/Week-2/Rollbar%20error%20tracing.PNG)
 
 ## CloudWatch
