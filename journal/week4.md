@@ -24,3 +24,25 @@ aws rds create-db-instance \
   --no-deletion-protection
 ```
 We temporarily stoped the RDS instance for 7 days since we aren't using it.
+
+Spin up docker-compose and confgiured Postgres locally
+
+Connected to postgres cli and logged into the postgres cli
+```
+psql -Upostgres --host localhost
+```
+
+created a databse in postgres
+```
+CREATE database cruddur
+```
+
+Created a schema.sql file in the bin directory of our backend folder
+```
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+```
+
+ran the schema.sql file with psql client
+```
+psql cruddur < db/schema.sql -h localhost -U postgres
+```
