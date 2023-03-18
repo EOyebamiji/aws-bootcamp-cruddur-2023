@@ -23,4 +23,4 @@ aws rds create-db-instance \
   --performance-insights-retention-period 7 \
   --no-deletion-protection
 ```
-We temporarily stoped the RDS instance for 4 days since we aren't using it.
+We temporarily stoped the RDS instance for 7 days since we aren't using it.
