@@ -1,0 +1,9 @@
+\d
+\dt
+\q
+\dt
+SELECT * FROM users
+\s auto
+SELECT * FROM users
+\q
+\s auto
