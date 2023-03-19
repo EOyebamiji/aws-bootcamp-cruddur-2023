@@ -20,7 +20,7 @@ tasks:
 
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
-      source "$THEIA_WORKSPACE_ROOT/backend-flask/RDS-update-SG-rule"
+      source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/RDS-update-SG-rule"
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
