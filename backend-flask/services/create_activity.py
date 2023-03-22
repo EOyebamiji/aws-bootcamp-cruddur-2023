@@ -1,5 +1,6 @@
-import uuid
 from datetime import datetime, timedelta, timezone
+from lib.db import db
+import uuid
 
 # from lib.db import db
 class CreateActivity:
@@ -66,4 +67,5 @@ class CreateActivity:
     )
     """
 
-    #query_commit(sql)
+    query_commit(sql)
+  #def query_commit_obeject()
