@@ -4,7 +4,7 @@ set -e # Stop, if it fails at any point
 # .bin/ddb/drop cruddur-messages prod
 
 if [ -z "$1" ]; then
-  echo "No TABLE_NAME argument supplied e.g. ./bin/ddb/drop crudur messages prod"
+  echo "No TABLE_NAME argument supplied e.g. ./bin/ddb/drop cruddur-messages prod"
   exit 1
 fi
 TABLE_NAME=$1
