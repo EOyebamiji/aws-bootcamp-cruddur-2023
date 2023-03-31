@@ -35,7 +35,6 @@ query_params = {
   }
 }
 
-
 # query the table
 response = dynamodb.query(**query_params)
 
