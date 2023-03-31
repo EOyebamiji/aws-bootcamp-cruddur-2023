@@ -1,9 +1,9 @@
 import boto3
-import botocore.exceptions
 import sys
 from datetime import datetime, timedelta, timezone
 import uuid
 import os
+import botocore.exceptions
 
 class Ddb:
   def client():
@@ -17,26 +17,24 @@ class Ddb:
 
   def list_message_groups(client,my_user_uuid):
     year = str(datetime.now().year)
-    table_name = 'cruddur_messages'
+    table_name = 'cruddur-messages'
     query_params = {
       'TableName': table_name,
-      'KeyConditionExpression': 'pk = :pkey AND begins_with(sk, :year)',  #:sk=:skey, :pk=:pkey
+      'KeyConditionExpression': 'pk = :pk AND begins_with(sk,:year)',
       'ScanIndexForward': False,
       'Limit': 20,
       'ExpressionAttributeValues': {
-        ':pkey': {'S': f"GRP#{my_user_uuid}"},
-        ':year': {'S': year}
+        ':year': {'S': year },
+        ':pk': {'S': f"GRP#{my_user_uuid}"}
       }
     }
-    print('query-params')
+    print('query-params:',query_params)
     print(query_params)
-    print('client')
-    print(client)
-
+    
     # query the table
     response = client.query(**query_params)
     items = response['Items']
-    print ("items::", items)
+
 
     results = []
     for item in items:
@@ -52,21 +50,21 @@ class Ddb:
 
   def list_messages(client,message_group_uuid):
     year = str(datetime.now().year)
-    table_name = 'cruddur_messages'
+    table_name = 'cruddur-messages'
     query_params = {
       'TableName': table_name,
-      'KeyConditionExpression': 'pk = :pkey AND begins_with(sk, :year)',  #:sk=:skey, :pk=:pkey,
+      'KeyConditionExpression': 'pk = :pk AND begins_with(sk,:year)',
       'ScanIndexForward': False,
       'Limit': 20,
       'ExpressionAttributeValues': {
-        ':year': {'S': str(year) },
-        ':pkey': {'S': f"MSG#{message_group_uuid}"}
+        ':year': {'S': year },
+        ':pk': {'S': f"MSG#{message_group_uuid}"}
       }
     }
 
     response = client.query(**query_params)
     items = response['Items']
-    items.reverse()    
+    items.reverse()
     results = []
     for item in items:
       created_at = item['sk']['S']
@@ -79,12 +77,12 @@ class Ddb:
       })
     return results
 
-def create_message(client,message_group_uuid, message, my_user_uuid, my_user_display_name, my_user_handle):
-  now = datetime.now(timezone.utc).astimezone().isoformat()
-  created_at = now
-  message_uuid = str(uuid.uuid4())
+  def create_message(client,message_group_uuid, message, my_user_uuid, my_user_display_name, my_user_handle):
+    now = datetime.now(timezone.utc).astimezone().isoformat()
+    created_at = now
+    message_uuid = str(uuid.uuid4())
 
-  record = {
+    record = {
       'pk':   {'S': f"MSG#{message_group_uuid}"},
       'sk':   {'S': created_at },
       'message': {'S': message},
@@ -94,14 +92,14 @@ def create_message(client,message_group_uuid, message, my_user_uuid, my_user_dis
       'user_handle': {'S': my_user_handle}
     }
     # insert the record into the table
-  table_name = 'cruddur_messages'
-  response = client.put_item(
+    table_name = 'cruddur-messages'
+    response = client.put_item(
       TableName=table_name,
       Item=record
     )
     # print the response
-  print(response)
-  return {
+    print(response)
+    return {
       'message_group_uuid': message_group_uuid,
       'uuid': my_user_uuid,
       'display_name': my_user_display_name,
@@ -109,10 +107,10 @@ def create_message(client,message_group_uuid, message, my_user_uuid, my_user_dis
       'message': message,
       'created_at': created_at
     }
-
+    
   def create_message_group(client, message,my_user_uuid, my_user_display_name, my_user_handle, other_user_uuid, other_user_display_name, other_user_handle):
     print('== create_message_group.1')
-    table_name = 'cruddur_messages'
+    table_name = 'cruddur-messages'
 
     message_group_uuid = str(uuid.uuid4())
     message_uuid = str(uuid.uuid4())

@@ -2,7 +2,6 @@ from datetime import datetime, timedelta, timezone
 
 from lib.db import db
 from lib.ddb import Ddb
-# from lib.momento import MomentoCounter
 
 class CreateMessage:
   # mode indicates if we want to create a new message_group or using an existing one
@@ -15,6 +14,7 @@ class CreateMessage:
     if (mode == "update"):
       if message_group_uuid == None or len(message_group_uuid) < 1:
         model['errors'] = ['message_group_uuid_blank']
+
 
     if cognito_user_id == None or len(cognito_user_id) < 1:
       model['errors'] = ['cognito_user_id_blank']
@@ -31,7 +31,7 @@ class CreateMessage:
     if model['errors']:
       # return what we provided
       model['data'] = {
-        'display_name': 'Andrew Brown',
+        'display_name': 'Emmanuel Oyebamiji',
         'handle':  user_sender_handle,
         'message': message
       }
@@ -79,6 +79,5 @@ class CreateMessage:
           other_user_display_name=other_user['display_name'],
           other_user_handle=other_user['handle']
         )
-      #MomentoCounter.incr(f"msgs/{user_handle}")
       model['data'] = data
     return model
