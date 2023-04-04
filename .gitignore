@@ -1,2 +1,2 @@
 docker/**/*
-/aws/json/event-data
+aws/json/event-data
