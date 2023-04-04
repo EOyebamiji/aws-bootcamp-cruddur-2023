@@ -1,0 +1,49 @@
+"event-data"{
+   "Records":[
+      {
+         "eventID":"00877f0f17b16b5fda4cd1a3f1fd1eb6",
+         "eventName":"INSERT",
+         "eventVersion":"1.1",
+         "eventSource":"aws:dynamodb",
+         "awsRegion":"us-east-1",
+         "dynamodb":{
+            "ApproximateCreationDateTime":1680630333.0,
+            "Keys":{
+               "sk":{
+                  "S":"2023-04-04T17:45:33.551521+00:00"
+               },
+               "pk":{
+                  "S":"MSG#fce29e8a-cd5d-4b08-8ad6-31b933226544"
+               }
+            },
+            "NewImage":{
+               "user_uuid":{
+                  "S":"0b5b7902-bd5d-4e76-a780-841d1fd547a6"
+               },
+               "user_handle":{
+                  "S":"EOyebamiji"
+               },
+               "sk":{
+                  "S":"2023-04-04T17:45:33.551521+00:00"
+               },
+               "message_uuid":{
+                  "S":"8f937d3c-f01e-49df-b63f-4b73acc4bf29"
+               },
+               "pk":{
+                  "S":"MSG#fce29e8a-cd5d-4b08-8ad6-31b933226544"
+               },
+               "message":{
+                  "S":"Hello Bayko,\nAre you real?"
+               },
+               "user_display_name":{
+                  "S":"Emmanuel Oyebamiji"
+               }
+            },
+            "SequenceNumber":"2400000000006454457678",
+            "SizeBytes":334,
+            "StreamViewType":"NEW_IMAGE"
+         },
+         "eventSourceARN":"arn:aws:dynamodb:us-east-1:572891318033:table/cruddur-messages/stream/2023-04-04T17:35:38.395"
+      }
+   ]
+}
