@@ -1,3 +1,5 @@
 docker/**/*
-aws/json/event-data/*
+aws/json/event-data
 frontend-react-js/build/*
+aws/dist/*
+aws/install
