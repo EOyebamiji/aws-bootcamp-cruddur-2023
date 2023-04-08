@@ -62,6 +62,7 @@ aws logs delete-retention-policy --log-group-name cruddur
 ![CloudWatch-Log-Retention](assets/Week-6/cloudwatch%20log%2Bretention%20policy.PNG)
 
 The below image shows the successful creation of the Cloudwatch log required for our ECS Fargate cluster
+
 ![CloudWatch-Logs](assets/Week-6/aws-cloudwatchlog%2Bgui.PNG)
 
 
@@ -77,7 +78,8 @@ aws ecs create-cluster \
 
 ![ECS-Cruddur-Creation](assets/Week-6/ECS-cruddur-creation.PNG)
 
-We confirm that the ECS service has been created 
+We confirm that the ECS service has been created
+
 ![ECS-Cruddur-Creation-GUI](assets/Week-6/ECS-cruddur-creation-gui.PNG)
 
 Created ECR repo for our backend-flask, frontend-react-js and base image, and push image
@@ -139,6 +141,7 @@ docker-compose up backend-flask db
 ![Docker-compose-up](assets/Week-6/ECR-docker-compose-up-log.PNG)
 
 After our container starts running, we can reach the health check feature added to our ```app.py``` by access the backend url via ```/api/health-check```
+
 ![Docker-healthcheck](assets/Week-6/ECR-health-check.PNG)
 
 Create ECR repo and push image
@@ -378,6 +381,7 @@ export CRUD_SERVICE_SG=$(aws ec2 describe-security-groups \
   --output text)
 ```
 We can confirm our service has been created in our cluster
+
 ![Service-Cluster](assets/Week-6/cluster-service-name.PNG)
 
 After successful creation of the ```backend-flask``` service created in our cluster, we checked for the health status of our running tasks.
@@ -395,9 +399,6 @@ We also confirmed access to database connection using the script we created ```/
 After creating our service the the ECS cluster, we confirmed access to our ```backend-flask/app.py``` via ```/api/notifications```
 
 ![Access-to-endpoint](assets/Week-6/access%20to%20endpoint%20-%20notifications.PNG)
-
-
-
 
 
 ```json
