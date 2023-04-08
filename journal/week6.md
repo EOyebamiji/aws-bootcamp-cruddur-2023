@@ -278,7 +278,6 @@ aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AWSXRayDaemonWri
 ```
 ![Task-role-permission](assets/Week-6/task-role-permission.PNG)
 
-
 Now, we progress to create our task-definition ```aws/task-definition``` directory and create a file ```backend-flask.json```
 
 ```json
