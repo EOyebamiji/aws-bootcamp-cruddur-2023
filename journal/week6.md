@@ -61,7 +61,7 @@ aws logs delete-retention-policy --log-group-name cruddur
 
 ![CloudWatch-Log-Retention](assets/Week-6/cloudwatch%20log%2Bretention%20policy.PNG)
 
-The belw image shows the successful creation of the Cloudwatch log required for our ECS Fargate cluster
+The below image shows the successful creation of the Cloudwatch log required for our ECS Fargate cluster
 ![CloudWatch-Logs](assets/Week-6/aws-cloudwatchlog%2Bgui.PNG)
 
 
