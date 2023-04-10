@@ -44,8 +44,8 @@
           {"name": "OTEL_EXPORTER_OTLP_ENDPOINT", "value": "https://api.honeycomb.io"},
           {"name": "AWS_COGNITO_USER_POOL_ID", "value": "us-east-1_kS8rnBQ5L"},
           {"name": "AWS_COGNITO_USER_POOL_CLIENT_ID", "value": "aq74hvh1fauuqigpuqdr80rpr"},
-          {"name": "FRONTEND_URL", "value": "*"},
-          {"name": "BACKEND_URL", "value": "*"},
+          {"name": "FRONTEND_URL", "value": "https://eoyebamiji.com"},
+          {"name": "BACKEND_URL", "value": "https://api.eoyebamiji.com"},
           {"name": "AWS_DEFAULT_REGION", "value": "us-east-1"}
         ],
         "secrets": [
