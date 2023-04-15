@@ -26,6 +26,6 @@ EXPOSE ${PORT}
 # CMD (Commands)
 # Commands required to run Flask which is;
 # python3 -m flask run --host=0.0.0.0 --port=4567
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567", "--no-debugger", "--no-reload"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567","--no-debug", "--no-debugger", "--no-reload"]
 
 # CMD ["/usr/local/bin/flask.sh"]

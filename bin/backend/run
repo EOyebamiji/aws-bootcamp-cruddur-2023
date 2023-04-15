@@ -12,6 +12,7 @@ docker run --rm \
   --publish 4567:4567 \
   -it backend-flask-prod
 
+
 #  --env AWS_ENDPOINT_URL="http://dynamodb-local:8000" \
 #  --env CONNECTION_URL="postgresql://postgres:password@db:5432/cruddur" \
 #  --env FRONTEND_URL="https://3000-omenking-awsbootcampcru-fz5zc9avjbe.ws-us93.gitpod.io" \

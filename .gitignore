@@ -2,3 +2,4 @@ docker/**/*
 aws/json/event-data
 frontend-react-js/build/*
 *.env
+awc-cli
