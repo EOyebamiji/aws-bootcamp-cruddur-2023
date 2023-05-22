@@ -41,6 +41,7 @@ import os
 import rollbar
 import rollbar.contrib.flask
 from flask import got_request_exception
+from flask import Flask
 
 """
 # Configuring Logger to Use CloudWatch
@@ -112,8 +113,9 @@ def after_request(response):
 
 # Rollbar
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
-@app.before_first_request
-def init_rollbar():
+#@app.before_first_request
+with app.app_context():
+  def init_rollbar():
     """init rollbar module"""
     rollbar.init(
         # access token
@@ -132,9 +134,9 @@ def init_rollbar():
 def health_check():
   return {'success': True}, 200
 
-#@app.route('/rollbar/test')
-#def rollbar_test():
-#    rollbar.report_message('Hello World!', 'warning')
+# @app.route('/rollbar/test')
+# def rollbar_test():
+#   rollbar.report_message('Hello World!', 'warning')
 #    return "Hello World!"
 
 @app.route("/api/message_groups", methods=['GET'])
@@ -218,7 +220,7 @@ def data_create_message():
     return {}, 401
 
 @app.route("/api/activities/home", methods=['GET'])
-@xray_recorder.capture('activities_home')
+# @xray_recorder.capture('activities_home')
 def data_home():
   access_token = extract_access_token(request.headers)
   try:
