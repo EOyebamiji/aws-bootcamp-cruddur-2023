@@ -1,5 +1,5 @@
-const sharp = require('sharp');
-const { S3Client, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
+import sharp from 'sharp';
+import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 
 function getClient(){
   const client = new S3Client();
@@ -47,9 +47,7 @@ async function uploadProcessedImage(client,dstBucket,dstKey,image){
   return response;
 }
 
-module.exports = {
-  getClient: getClient,
-  getOriginalImage: getOriginalImage,
-  processImage: processImage,
-  uploadProcessedImage: uploadProcessedImage
-}
+export const getClient = getClient;
+export const getOriginalImage = getOriginalImage;
+export const processImage = processImage;
+export const uploadProcessedImage = uploadProcessedImage;
