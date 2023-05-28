@@ -1,16 +1,17 @@
-import { env } from 'process';
-import { getClient, getOriginalImage, processImage, uploadProcessedImage } from './s3-image-processing.js';
-import { parse } from 'path';
+const process = require('process');
+const { getClient, getOriginalImage, processImage, uploadProcessedImage } = require('./s3-image-processing.js');
+const path = require('path');
 
-const bucketName = env.DEST_BUCKET_NAME
-const folderInput = env.FOLDER_INPUT
-const folderOutput = env.FOLDER_OUTPUT
-const width = parseInt(env.PROCESS_WIDTH)
-const height = parseInt(env.PROCESS_HEIGHT)
+const bucketName = process.env.DEST_BUCKET_NAME;
+const folderInput = process.env.FOLDER_INPUT;
+const folderOutput = process.env.FOLDER_OUTPUT;
+const width = parseInt(process.env.PROCESS_WIDTH);
+const height = parseInt(process.env.PROCESS_HEIGHT);
+
 
 const client = getClient();
 
-export async function handler(event) {
+exports.handler = async (event) => {
   const srcBucket = event.Records[0].s3.bucket.name;
   const srcKey = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
   console.log('srcBucket',srcBucket)
@@ -18,8 +19,8 @@ export async function handler(event) {
 
   const dstBucket = bucketName;
 
-  filename = parse(srcKey).name
-  const dstKey = `${/*folderInput*/ folderOutput}/${filename}.jpg`
+  filename = path.parse(srcKey).name
+  const dstKey = `${folderOutput}/${filename}.jpg`
   console.log('dstBucket',dstBucket)
   console.log('dstKey',dstKey)
 

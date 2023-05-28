@@ -8,6 +8,8 @@ import * as sns from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
 import * as dotenv from 'dotenv';
 
+require('dotenv').config();
+
 dotenv.config();
 
 export class ThumbingServerlessCdkStack extends cdk.Stack {
