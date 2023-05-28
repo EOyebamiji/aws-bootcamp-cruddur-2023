@@ -2,10 +2,10 @@ const { getClient, getOriginalImage, processImage, uploadProcessedImage } = requ
 
 async function main(){
   client = getClient()
-  const srcBucket = 'cruddur-thumbs'
-  const srcKey = 'avatar/original/data.jpg'
-  const dstBucket = 'cruddur-thumbs'
-  const dstKey = 'avatar/processed/data.jpg'
+  const srcBucket = 'eoyebamiji-uploaded-avatars'
+  const srcKey = 'eoyebamiji-uploaded-avatars/data.jpg'
+  const dstBucket = 'assets.eoyebamiji.com'
+  const dstKey = 'processed/data.jpg'
   const width = 256
   const height = 256
 

@@ -47,7 +47,9 @@ async function uploadProcessedImage(client,dstBucket,dstKey,image){
   return response;
 }
 
-export const getClient = getClient;
-export const getOriginalImage = getOriginalImage;
-export const processImage = processImage;
-export const uploadProcessedImage = uploadProcessedImage;
+module.exports = {
+  getClient: getClient,
+  getOriginalImage: getOriginalImage,
+  processImage: processImage,
+  uploadProcessedImage: uploadProcessedImage
+}
