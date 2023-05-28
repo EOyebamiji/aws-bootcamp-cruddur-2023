@@ -8,8 +8,6 @@ import * as sns from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
 import * as dotenv from 'dotenv';
 
-require('dotenv').config();
-
 dotenv.config();
 
 export class ThumbingServerlessCdkStack extends cdk.Stack {
@@ -24,7 +22,7 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     const webhookUrl: string = process.env.THUMBING_WEBHOOK_URL as string;
     const topicName: string = process.env.THUMBING_TOPIC_NAME as string;
     const functionPath: string = process.env.THUMBING_FUNCTION_PATH as string;
-    console.log('uploadsBucketName',uploadsBucketName)
+    console.log('uploadsBucketName',)
     console.log('assetsBucketName',assetsBucketName)
     console.log('folderInput',folderInput)
     console.log('folderOutput',folderOutput)
@@ -37,9 +35,9 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
 
     // create a lambda
     const lambda = this.createLambda(
-      functionPath,
+      functionPath, 
       uploadsBucketName, 
-      assetsBucketName,
+      assetsBucketName, 
       folderInput, 
       folderOutput
     );
@@ -90,7 +88,7 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
       }
     });
     return lambdaFunction;
-  } 
+  }
 
   createS3NotifyToLambda(prefix: string, lambda: lambda.IFunction, bucket: s3.IBucket): void {
     const destination = new s3n.LambdaDestination(lambda);
