@@ -19,7 +19,7 @@ export async function handler(event) {
   const dstBucket = bucketName;
 
   filename = parse(srcKey).name
-  const dstKey = `${folderInput, folderOutput}/${filename}.jpg`
+  const dstKey = `${/*folderInput*/ folderOutput}/${filename}.jpg`
   console.log('dstBucket',dstBucket)
   console.log('dstKey',dstKey)
 
