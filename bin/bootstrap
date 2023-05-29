@@ -6,8 +6,9 @@ NO_COLOR='\033[0m'
 LABEL="bootstrap"
 printf "${CYAN}======= ${LABEL}${NO_COLOR}\n"
 
-bin_path="$(realpath .)/bin"
+ABS_PATH=$(readlink -f "$0")
+BIN_DIR=$(dirname $ABS_PATH)
 
-source "$bin_path/ecr/login"
-ruby "$bin_path/frontend/generate-env"
-ruby "$bin_path/backend/generate-env"
+source "$BIN_DIR/db/setup"
+source "$BIN_DIR/ddb/schema-load"
+source "$BIN_DIR/ddb/seed"
