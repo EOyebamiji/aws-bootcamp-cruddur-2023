@@ -11,3 +11,5 @@ bin_path="$(realpath .)/bin"
 source "$bin_path/ecr/login"
 ruby "$bin_path/frontend/generate-env"
 ruby "$bin_path/backend/generate-env"
+
+docker compose up
