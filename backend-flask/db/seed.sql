@@ -2,7 +2,7 @@
 INSERT INTO public.users (display_name, email, handle, cognito_user_id)
 VALUES
   ('Emmanuel Oyebamiji', 'Emmanueloluwatosin56@gmail.com', 'EOyebamiji' ,'MOCK'),
-  ('Andrew Browm', 'andrew@exampro.co', 'andrewbrown', 'MOCK'),
+  ('Andrew Brown', 'andrew@exampro.co', 'andrewbrown', 'MOCK'),
   ('Andrew Bayko', 'bayko@exampro.co', 'bayko', 'MOCK'),
   ('Londo Mollari', 'lmollari@centari.com', 'londo', 'MOCK');
 
