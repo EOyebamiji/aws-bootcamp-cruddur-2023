@@ -1,6 +1,7 @@
 import './HomeFeedPage.css';
 import React from "react";
 
+components/DesktopNavigation
 import DesktopNavigation  from 'components/DesktopNavigation';
 import DesktopSidebar     from 'components/DesktopSidebar';
 import ActivityFeed from 'components/ActivityFeed';
