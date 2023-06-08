@@ -1,7 +1,7 @@
 import './ProfileHeading.css';
 import EditProfileButton from '../components/EditProfileButton';
 
-import ProfileAvatar from 'components/ProfileAvatar'
+import ProfileAvatar from '../components/ProfileAvatar'
 
 export default function ProfileHeading(props) {
   const backgroundImage = 'url("https://assets.eoyebamiji.com/banners/banner.jpg")';
