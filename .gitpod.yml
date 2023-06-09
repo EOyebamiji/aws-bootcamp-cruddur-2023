@@ -18,7 +18,8 @@ tasks:
       sudo apt install -y postgresql-client-13 libpq-dev
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
-      python "$THEIA_WORKSPACE_ROOT/bin/rds/update-SG-rule"
+      cd /workspace/aws-bootcamp-cruddur-2023/
+      ./bin/rds/update-SG-rule
 
   - name: react-js
     command: |
