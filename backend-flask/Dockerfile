@@ -23,6 +23,8 @@ COPY . .
 
 EXPOSE ${PORT}
 
+ENV PYTHONUNBUFFERED=1
+
 # CMD (Commands)
 # Commands required to run Flask which is;
 # python3 -m flask run --host=0.0.0.0 --port=4567
