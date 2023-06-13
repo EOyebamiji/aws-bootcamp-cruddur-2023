@@ -23,7 +23,8 @@ def get_last_successful_run():
 def set_last_successful_run(value):
   sql = """
   UPDATE schema_information
-  SET last_successful_run = %(last_succesful_run)s
+  SET last_successful_run = %(last_successful_run)s
+  WHERE id = 1
   """
   db.query_commit(sql,{'last_successful_run': value})
   return value
@@ -43,6 +44,15 @@ for migration_file in migration_files:
     match = re.match(r'^\d+', filename)
     if match:
       file_time = int(match.group())
+      print("====<><>====")
+      print(last_successful_run, file_time)
+      print(last_successful_run > file_time)
       if last_successful_run > file_time:
         last_migration_file = module_name
+        mod = importlib.import_module(module_name)
+        print('===== Rolling back: ==== ',module_name)
+        mod.migration.rollback()
+        timestamp = str(time.time()).replace(".","")
+        last_successful_run = set_last_successful_run(file_time)
+
 print(last_migration_file)

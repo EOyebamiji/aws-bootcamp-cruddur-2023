@@ -23,6 +23,7 @@ class {klass}Migration:
     data = \"\"\"
     \"\"\"
     return data
+    
   def rollback_sql():
     data = \"\"\"
     \"\"\"
