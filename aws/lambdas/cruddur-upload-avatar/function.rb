@@ -50,3 +50,5 @@ def handler(event:, context:)
     }
   end # if 
 end # def handler
+
+puts "Presigned URL: #{url}"
