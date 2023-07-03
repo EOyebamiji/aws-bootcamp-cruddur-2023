@@ -10,7 +10,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-eoyebamiji-awsbootcampc-yb0rqfqoxwn.ws-eu101.gitpod.io",
+        "Access-Control-Allow-Origin": "https://3000-eoyebamiji-awsbootcampc-06dsv25a1ut.ws-eu101.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200
@@ -42,7 +42,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-eoyebamiji-awsbootcampc-yb0rqfqoxwn.ws-eu101.gitpod.io",
+        "Access-Control-Allow-Origin": "https://3000-eoyebamiji-awsbootcampc-06dsv25a1ut.ws-eu101.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200, 
@@ -50,5 +50,3 @@ def handler(event:, context:)
     }
   end # if 
 end # def handler
-
-puts "Presigned URL: #{url}"
