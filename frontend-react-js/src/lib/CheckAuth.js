@@ -18,6 +18,7 @@ export async function checkAuth(setUser){
     bypassCache: false 
   })
   .then((cognito_user) => {
+    console.log("This is the cognito user", cognito_user)
     setUser({
       cognito_user_id: cognito_user.attributes.sub,
       display_name: cognito_user.attributes.name,
