@@ -46,3 +46,25 @@ ran the schema.sql file with psql client
 ```
 psql cruddur < db/schema.sql -h localhost -U postgres
 ```
+
+![Cognito-uer-Pool](assets/Week-4/Cognito%20User%20Pool.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/DB-Table.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/env%20var.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/Lamda%20Function.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/Lamda%20Logging.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/Postgres%20Creation%20UI%20-%20Stopped%20instance.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/Postgres%20RDS%20Json%20Response.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/Postsql%20cli.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/schema%20sql.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/seed%20query.PNG)
+
+![Cognito-uer-Pool](assets/Week-4/TESTINng%20%20curd%20button%20issue.PNG)
