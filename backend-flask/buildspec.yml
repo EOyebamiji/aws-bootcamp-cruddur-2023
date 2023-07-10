@@ -7,7 +7,6 @@ phases:
       docker: 20
 
 # Add additional phases and commands as needed
-  pre-build:
     commands:
       - echo "cd into $CODEBUILD_SRC_DIR/backend"
       - cd $CODEBUILD_SRC_DIR/backend-flask
