@@ -1,6 +1,6 @@
 # FREE AWS Cloud Project Bootcamp
 
-[!](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiMFhHZE1kM1hsSTlLY2dYc1lPWVBucnZRY0lNQ3VMNmZRRFkvR1RVZEY1S2dDbnJYamsxT2JQR0VxWTZDOWZjRlNrMThyK1JzN200MW9GS0QwdVlDS3VJPSIsIml2UGFyYW1ldGVyU3BlYyI6IktLTVk2anBDTitKRkJxSmIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
+[CodeBuild Badge](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiMFhHZE1kM1hsSTlLY2dYc1lPWVBucnZRY0lNQ3VMNmZRRFkvR1RVZEY1S2dDbnJYamsxT2JQR0VxWTZDOWZjRlNrMThyK1JzN200MW9GS0QwdVlDS3VJPSIsIml2UGFyYW1ldGVyU3BlYyI6IktLTVk2anBDTitKRkJxSmIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
 
 
 - Application: Cruddur
