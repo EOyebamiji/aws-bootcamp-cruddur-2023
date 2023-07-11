@@ -1,6 +1,6 @@
 # Week 6 — Deploying Containers
 
-Welcome to Week 6, where we will be covering the following
+Welcome to Week 6, where we will be covering the following:
 
 - Create an Elastic Container Repository (ECR) 
 - Push our container images to ECR
@@ -11,10 +11,10 @@ Welcome to Week 6, where we will be covering the following
 - How to push new updates to your code update Fargate running tasks
 - Test that we have a Cross-origin Resource Sharing (CORS) issue
 
-Continuing from Week 5 (Dynamodb Implementation), First step is to create a test script that will check the connection status of our container to the Production or Deveopment Url for PostgresSql.
+Continuing from Week 5 (Dynamodb Implementation), the First step is to create a test script that will check the connection status of our container to the Production or development Url for PostgresSql.
 
-Test RDS Connecetion
-  + Add this test script into db so we can easily check our connection from our container.
+Test RDS Connection
+  + Add this test script into db to easily check our connection from our container.
     
   Created a new file ```test``` and included the below code to check our connection status in the ```/backend-flask/bin/db``` directory. (We grant executable permission using ``` chmod u+x ./bin/db/test ```)
 
@@ -82,7 +82,7 @@ We confirm that the ECS service has been created
 
 ![ECS-Cruddur-Creation-GUI](assets/Week-6/ECS-cruddur-creation-gui.PNG)
 
-Created ECR repo for our backend-flask, frontend-react-js and base image, and push image
+Created ECR repo for our backend-flask, frontend-react-js and base image, and pushed image
 Created an image for our base image application "cuddur-python"
 
 ```sh
@@ -93,14 +93,14 @@ aws ecr create-repository \
 ![ECR-Creation-Cruddur-Python](assets/Week-6/ECR-create-backend-repo.PNG)
 
 After creating the repo, we need to login to ECR so we can push our image to the created repository
-We used the env var we have set for our aws credentials
+We used the env var we have set for our AWS credentials
 
 ```sh
 aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
 ```
 ![ECR-Login](assets/Week-6/ECR-Login.PNG)
 
-Before building our image, we set the path for our image as an enviromental variable
+Before building our image, we set the path for our image as an environmental variable
 
 ```sh
 export ECR_PYTHON_URL="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/cruddur-python"
@@ -108,7 +108,7 @@ echo $ECR_PYTHON_URL
 ```
 ![ECR-ENV-VAR](assets/Week-6/ECR-env-var.PNG)
 
-next step, we pull the python alpine image from dockerhub
+next step, we pull the python alpine image from the dockerhub
 ```sh
 docker pull python:3.10-slim-buster
 ```
@@ -131,20 +131,20 @@ We can confirm that our new image is available locally and pushed to the ECR rep
 
 ![ECR-Local](assets/Week-6/ECR-confrim-docker-images.PNG)
 
-Next, we updated our flask app to use our new image from our ECR repo
+Next, we updated our Flask app to use our new image from our ECR repo
 
-We then ran a docker-compose up select services to test our new image and confirm health check
+We then ran a docker-compose up select services to test our new image and confirm the health check
 
 ```sh
 docker-compose up backend-flask db
 ```
 ![Docker-compose-up](assets/Week-6/ECR-docker-compose-up-log.PNG)
 
-After our container starts running, we can reach the health check feature added to our ```app.py``` by access the backend url via ```/api/health-check```
+After our container starts running, we can reach the health check feature added to our ```app.py``` by accessing the backend url via ```/api/health-check```
 
 ![Docker-healthcheck](assets/Week-6/ECR-health-check.PNG)
 
-Create ECR repo and push image
+Create an ECR repo and push the image
 Created an image for our backend-flask image application "backend-flask"
 ```sh
 aws ecr create-repository \
@@ -187,9 +187,9 @@ We can confirm from the AWS GUI that our repositories (cruddur-python and backen
 
 ![ECR-GUI-Images](assets/Week-6/ECR-GUI.PNG)
 
-Now, we Create Task and Exection Roles for Task Defintion
+Now, we Create Task and Exection Roles for Task definition
 
-Before creating the task and definitions, we need to setup parameters in the AWS Systems Manager to handle our secrets and enviromental variables as parameters
+Before creating the task and definitions, we need to setup parameters in the AWS Systems Manager to handle our secrets and environmental variables as parameters
 
 ```sh
 aws ssm put-parameter --type "SecureString" --name "/cruddur/backend-flask/AWS_ACCESS_KEY_ID" --value $AWS_ACCESS_KEY_ID
