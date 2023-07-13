@@ -1,0 +1,9 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Your description here
+
+Resources:
+  # Define your AWS resources here
+
+Outputs:
+  # Define your outputs here
