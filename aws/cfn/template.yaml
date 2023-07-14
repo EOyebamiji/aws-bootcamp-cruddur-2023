@@ -1,9 +1,19 @@
 ---
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Your description here
+Description: |
+    Setup ECS Cluster
 
 Resources:
-  # Define your AWS resources here
+  ECSCluster: #Logical Name 
+    Type: 'AWS::ECS::Cluster'
+    Properties:
+        ClusterName: MyCluster
+        CapacityProviders:
+            - FARGATE
+#Parameters:
+#Mappings:
+#Resources:
+#Outputs:
+#Metadata
 
-Outputs:
-  # Define your outputs here
+
