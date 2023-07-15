@@ -7,8 +7,8 @@ Description: |
     - sets DNS hostname for EC2 Instances
     - Only IPV4, IPV6 is disabled
   - InternetGateway
-  - RouteTable
     - Route to IGW
+  - RouteTable
     - Route to Local
   - 6 Subnet Explicity Associated to Route Table
     - 3 Public Subnets numbered 1 to 3
