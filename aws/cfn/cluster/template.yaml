@@ -3,11 +3,11 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: |
   Application Load Balancer and Cluster configuration to support fargate containers
   - ECS Fargate Cluster
-  - ALB
+  - Application Load Balancer (ALB)
     - Ipv4 only
     - internet facing
     - Certificate in ACM
-  - ALB security group
+  - Application Load Balancer (ALB) security group
   - HTTPS Listener
     - send naked domain to frontend target group
     - send api. subdomain to backend target group
@@ -120,7 +120,7 @@ Resources:
           Value: false
         - Key: load_balancing.cross_zone.enabled
           Value: true
-        # for logs purposes
+        # For Logging Purposes
         #- Key: access_logs.s3.enabled
         #  Value: false
         #- Key: access_logs.s3.bucket
