@@ -6,7 +6,7 @@ Description: |
   - Application Load Balancer (ALB)
     - Ipv4 only
     - internet facing
-    - Certificate in ACM
+    - Certificate attached Amazon Certificate Manager (ACM)
   - Application Load Balancer (ALB) security group
   - HTTPS Listener
     - send naked domain to frontend target group
