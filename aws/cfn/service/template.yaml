@@ -1,9 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
-  Task Definition
-  Fargate Service
-  Execution Role
-  Task Role
+  Backend Service
+    - Task Definition File
+    - Fargate Service
+    - Task Role
+    - Execution Role
 
 Parameters:
   NetworkingStack:
@@ -61,7 +62,7 @@ Parameters:
     Default: 'arn:aws:ssm:us-east-1:572891318033:parameter/cruddur/backend-flask/AWS_SECRET_ACCESS_KEY'
   SecretsConnectionUrl:
     Type: String
-    Default: 'arn:aws:ssm:us-eastg-1:572891318033:parameter/cruddur/backend-flask/CONNECTION_URL'
+    Default: 'arn:aws:ssm:us-east-1:572891318033:parameter/cruddur/backend-flask/CONNECTION_URL'
   SecretsRollbarAccessToken:
     Type: String
     Default: 'arn:aws:ssm:us-east-1:572891318033:parameter/cruddur/backend-flask/ROLLBAR_ACCESS_TOKEN'
@@ -87,7 +88,7 @@ Resources:
       LoadBalancers:
         - TargetGroupArn:
             Fn::ImportValue:
-              !Sub "${ClusterStack}BackendTGArn"
+              !Sub "${ClusterStack}BackendTargetGroup"
           ContainerName: 'backend-flask'
           ContainerPort: !Ref ContainerPort
       NetworkConfiguration:
@@ -105,7 +106,7 @@ Resources:
       PropagateTags: SERVICE
       ServiceConnectConfiguration:
         Enabled: true
-        Namespace: "cruddur"
+        Namespace: "Crud"
         # TODO - If you want to log
         # LogConfiguration
         Services:
@@ -194,7 +195,7 @@ Resources:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
     Type: AWS::IAM::Role
     Properties:
-      RoleName: CruddurServiceExecutionRole
+      RoleName: CrdExecutionRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -203,7 +204,7 @@ Resources:
               Service: 'ecs-tasks.amazonaws.com'
             Action: 'sts:AssumeRole'
       Policies:
-        - PolicyName: 'cruddur-execution-policy'
+        - PolicyName: 'Cruddur-Execution-Policy'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -229,7 +230,7 @@ Resources:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
     Type: AWS::IAM::Role
     Properties:
-      RoleName: CruddurServiceTaskRole
+      RoleName: CrdServiceTaskRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -238,7 +239,7 @@ Resources:
               Service: 'ecs-tasks.amazonaws.com'
             Action: 'sts:AssumeRole'
       Policies:
-        - PolicyName: 'cruddur-task-policy'
+        - PolicyName: 'Cruddur-Task-Policy'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
