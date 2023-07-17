@@ -190,12 +190,12 @@ Resources:
           CidrIp: '0.0.0.0/0'
           Description: CONNECTION HTTP
   
-  # Need to create this SG before to pass it to the database SG
+  # Need to create this SG before the service to pass it to the database SG
   ServiceSG:
     #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html
     Type: AWS::EC2::SecurityGroup
     Properties: 
-      GroupDescription: SG for the Fargate SG for cruddur
+      GroupDescription: Security Group for the Fargate Services for Cruddur
       GroupName: !Sub "${AWS::StackName}ServSG"
       VpcId: 
         Fn::ImportValue:
