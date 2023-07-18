@@ -7,8 +7,6 @@ CONFIG_PATH="/workspace/aws-bootcamp-cruddur-2023/ddb/config.toml"
 
 sam validate -t $TEMPLATE_PATH
 
-echo "== Build =="
-
 CYAN='\033[1;36m'
 NO_COLOR='\033[0m'
 LABEL="== Build =="

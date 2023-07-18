@@ -4,7 +4,6 @@ set -e # stop the execution of the script if it fails
 PACKAGED_TEMPLATE_PATH="/workspace/aws-bootcamp-cruddur-2023/.aws-sam/build/packaged.yaml"
 CONFIG_PATH="/workspace/aws-bootcamp-cruddur-2023/ddb/config.toml"
 
-echo "== Deploy =="
 
 CYAN='\033[1;36m'
 NO_COLOR='\033[0m'
