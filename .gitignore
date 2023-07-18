@@ -6,3 +6,5 @@ awc-cli
 node_modules
 .aws-sam
 build.toml
+build.toml
+tmp/*

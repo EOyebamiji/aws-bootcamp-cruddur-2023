@@ -2,6 +2,11 @@
 
 set -e # stop the execution of the script if failes
 
+CYAN='\033[1;36m'
+NO_COLOR='\033[0m'
+LABEL="== Cluster Deploy =="
+printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
+
 CFN_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/cfn/cluster/template.yaml"
 CONFIG_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/cfn/cluster/config.toml"
 echo $CFN_PATH
