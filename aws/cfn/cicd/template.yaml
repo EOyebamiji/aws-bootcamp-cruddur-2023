@@ -89,9 +89,13 @@ Resources:
                 ClusterName:
                   Fn::ImportValue:
                     !Sub ${ClusterStack}ClusterName
-                ServiceName:
-                  Fn::ImportValue:
-                    !Sub ${ServiceStack}ServiceName
+                # We decided not to use cross-stack so we can tear down a service independently (loose coupled)
+                # Tho I didn't encounter the same error as Andrew, I'm decoupling this system to avoid a future error.
+                # I got same execution role error but only redeployed cfn/service and it worked seamlessly
+                # I tried both coupled and de-coupled system and both executed without any error. However, for now, I'll leave it a de-coupled state
+                ServiceName: backend-flask
+                #  Fn::ImportValue:
+                #    !Sub ${ServiceStack}ServiceName
   CodePipelineRole:
     Type: AWS::IAM::Role
     Properties:

@@ -10,7 +10,7 @@ def lambda_handler(event, context):
     user_display_name  = user['name']
     user_email         = user['email']
     user_handle        = user['preferred_username']
-    user_cognito_id    = user['sub']
+    cognito_user_id     = user['sub']
     try:
       print('entered-try')
       sql = f"""
@@ -30,7 +30,7 @@ def lambda_handler(event, context):
         user_display_name,
         user_email,
         user_handle,
-        user_cognito_id
+        cognito_user_id 
       ]
       cur.execute(sql,*params)
       conn.commit() 
