@@ -19,6 +19,7 @@ puts "output_changset_path: #{changeset_path}"
 puts "auto_approve:         #{ENV["SYNC_AUTO_APPROVE"]}"
 
 puts "sync =="
+
 AwsS3WebsiteSync::Runner.run(
   aws_access_key_id:     ENV["AWS_ACCESS_KEY_ID"],
   aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],

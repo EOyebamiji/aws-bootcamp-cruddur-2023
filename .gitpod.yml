@@ -10,6 +10,7 @@ tasks:
       
   - name: cfn-lint
     before: |
+      bundle update --bundler
       pip install cfn-lint
       cargo install cfn-guard
       gem install cfn-toml
