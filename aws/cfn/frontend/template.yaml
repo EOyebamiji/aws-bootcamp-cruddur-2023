@@ -97,5 +97,5 @@ Resources:
           SslSupportMethod: sni-only
         CustomErrorResponses:
           - ErrorCode: 403
-            ResponseCode: 200
+            ResponseCode: 400
             ResponsePagePath: /index.html
