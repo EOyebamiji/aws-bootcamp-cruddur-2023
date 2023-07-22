@@ -1,0 +1,247 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: |
+  Base networking components for the stack
+  - VPC
+    - sets DNS hostname for EC2 Instances
+    - Only IPV4, IPV6 is disabled
+  - InternetGateway
+    - Route to IGW
+  - RouteTable
+    - Route to Local
+  - 6 Subnet Explicity Associated to Route Table
+    - 3 Public Subnets numbered 1 to 3
+    - 3 Private Subnets numbered 1 to 3
+
+Parameters:
+  VpcCidrBlock:
+    Type: String
+    Default: 10.0.0.0/16
+  SubnetCidrBlocks:
+    Description: "Comma-delimited list of CIDR blocks for our private and public subnets"
+    Type: CommaDelimitedList
+    Default: > 
+      10.0.0.0/22, 
+      10.0.4.0/22, 
+      10.0.8.0/22, 
+      10.0.12.0/22, 
+      10.0.16.0/22, 
+      10.0.20.0/22
+  Az1:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Default: us-east-1a
+  Az2:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Default: us-east-1b
+  Az3:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Default: us-east-1c
+
+#VPC - Virtual Private Cloud
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html
+Resources:
+  VPC: 
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: !Ref VpcCidrBlock
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}VPC"
+
+#IGW - Internet Gateway
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html
+  IGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}IGW"
+  
+  AttachIGW:
+  #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: 
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref IGW
+
+#Route Table
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}RT"
+
+#Routes To IGW
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html
+  RouteToIGW:
+    Type: AWS::EC2::Route
+    DependsOn: AttachIGW
+    Properties:
+      RouteTableId: !Ref RouteTable
+      GatewayId: !Ref IGW
+      DestinationCidrBlock: 0.0.0.0/0
+
+#Public Subnet 1
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+  SubnetPub1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select [0, !Ref SubnetCidrBlocks]
+      AvailabilityZone: !Ref Az1
+      EnableDns64: false
+      MapPublicIpOnLaunch: true #Public Subnet
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}SubnetPub1"
+
+#Public Subnet 2
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+  SubnetPub2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select [1, !Ref SubnetCidrBlocks]
+      AvailabilityZone: !Ref Az2
+      EnableDns64: false
+      MapPublicIpOnLaunch: true #Public Subnet
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}SubnetPub2"
+
+#Public Subnet 3
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+  SubnetPub3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select [2, !Ref SubnetCidrBlocks]
+      AvailabilityZone: !Ref Az3
+      EnableDns64: false
+      MapPublicIpOnLaunch: true #Public Subnet
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}SubnetPub3"
+        
+#Private Subnet 1
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+  SubnetPrv1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select [3, !Ref SubnetCidrBlocks]
+      AvailabilityZone: !Ref Az1
+      EnableDns64: false
+      MapPublicIpOnLaunch: false ##Private Subnet
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}SubnetPrv1"
+  
+#Private Subnet 2
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+  SubnetPrv2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select [4, !Ref SubnetCidrBlocks]
+      AvailabilityZone: !Ref Az2
+      EnableDns64: false
+      MapPublicIpOnLaunch: false #Private Subnet
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}SubnetPrv2"
+  
+#Private Subnet 3
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+  SubnetPrv3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select [5, !Ref SubnetCidrBlocks]
+      AvailabilityZone: !Ref Az3
+      EnableDns64: false
+      MapPublicIpOnLaunch: false #Private Subnet
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: !Sub "${AWS::StackName}SubnetPrv3"
+
+#Subnet Route Association
+  SubnetPub1RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetPub1
+      RouteTableId: !Ref RouteTable
+  SubnetPub2RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetPub2
+      RouteTableId: !Ref RouteTable
+  SubnetPub3RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetPub3
+      RouteTableId: !Ref RouteTable
+  SubnetPrv1RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetPrv1
+      RouteTableId: !Ref RouteTable
+  SubnetPrv2RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetPrv2
+      RouteTableId: !Ref RouteTable
+  SubnetPrv3RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetPrv3
+      RouteTableId: !Ref RouteTable
+
+
+
+Outputs:
+  VpcId:
+    Value: !Ref VPC
+    Export:
+      Name: !Sub "${AWS::StackName}VpcId"
+  VpcCidrBlock:
+    Value: !GetAtt VPC.CidrBlock
+    Export:
+      Name: !Sub "${AWS::StackName}VpcCidrBlock"
+  SubnetCidrBlocks:
+    Value: !Join [",", !Ref SubnetCidrBlocks]
+    Export:
+      Name: !Sub "${AWS::StackName}SubnetCidrBlocks"
+  PublicSubnetIds:
+    Value: !Join
+      - ","
+      - - !Ref SubnetPub1
+        - !Ref SubnetPub2
+        - !Ref SubnetPub3
+    Export:
+      Name: !Sub "${AWS::StackName}PublicSubnetIds"
+  PrivateSubnetIds:
+    Value: !Join
+      - ","
+      - - !Ref SubnetPrv1
+        - !Ref SubnetPrv2
+        - !Ref SubnetPrv3
+    Export:
+      Name: !Sub "${AWS::StackName}PrivateSubnetIds"
+  AvailabilityZones:
+    Value: !Join
+      - ","
+      - - !Ref Az1
+        - !Ref Az2
+        - !Ref Az3
+    Export:
+      Name: !Sub "${AWS::StackName}AvailabilityZones"
+
+

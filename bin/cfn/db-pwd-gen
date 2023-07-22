@@ -1,0 +1,22 @@
+#! /usr/bin/bash
+
+CYAN='\033[1;36m'
+NO_COLOR='\033[0m'
+LABEL="== Generate Password based on predefined requiremnts and assign it to the env var =="
+printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
+
+set -e # stop the execution of the script if failes
+
+export DB_PASSWORD=$(aws secretsmanager get-random-password \
+--exclude-punctuation \
+--password-length 41 --require-each-included-type \
+--output text \
+--query RandomPassword)
+
+echo $DB_PASSWORD
+
+#pass to gitpod
+gp env DB_PASSWORD=$DB_PASSWORD
+export DB_PASSWORD=$DB_PASSWORD
+
+env | grep DB_PASSWORD

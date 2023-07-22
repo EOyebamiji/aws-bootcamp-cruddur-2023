@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-007'
+region = 'us-east-1'
+stack_name = 'CrdFrontend'
+
+[parameters]
+CertificateArn = 'arn:aws:acm:us-east-1:572891318033:certificate/e59f14f6-0864-48b8-b3b8-4458ba1951cb'
+WwwBucketName = 'www.eoyebamiji.com'
+RootBucketName = 'eoyebamiji.com'

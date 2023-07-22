@@ -305,7 +305,7 @@ Now, we progress to create our task-definition ```aws/task-definition``` directo
         "logDriver": "awslogs",
         "options": {
             "awslogs-group": "cruddur",
-            "awslogs-region": "ca-central-1",
+            "awslogs-region": "us-east-1",
             "awslogs-stream-prefix": "backend-flask"
         }
       },
