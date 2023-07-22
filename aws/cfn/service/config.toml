@@ -4,5 +4,5 @@ region = 'us-east-1'
 stack_name = 'CrdSrvBackendFlask'
 
 [parameters]
-EnvFrontendUrl = 'eoyebamiji.com'
-EnvBackendUrl = 'api.eoyebamiji.com'
+EnvFrontendUrl = 'https://eoyebamiji.com'
+EnvBackendUrl = 'https://api.eoyebamiji.com'

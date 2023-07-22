@@ -37,11 +37,11 @@ def lambda_handler(event, context):
         'handle': user_handle,
         'cognito_user_id': cognito_user_id
       }
-      cur.execute(sql,*params)
+      cur.execute(sql,params)
       conn.commit() 
 
     except (Exception, psycopg2.DatabaseError) as error:
-      print('error:')
+      print('error[]')
       print(error)
     finally:
       if conn is not None:
