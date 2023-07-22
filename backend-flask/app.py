@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request
+from flask import request, g
 from flask_cors import CORS, cross_origin
 import os
 import sys
@@ -17,7 +17,7 @@ from services.show_activity import *
 from services.users_short import *
 from services.update_profile import *
 
-from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
+from lib.cognito_jwt_token import jwt_required
 
 # HoneyComb Observability tool
 from opentelemetry import trace
