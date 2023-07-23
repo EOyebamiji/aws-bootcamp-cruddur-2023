@@ -4,7 +4,7 @@ class ReplyToActivityUuidToStringMigration:
   def migrate_sql():
     data = """
     ALTER TABLE activities
-    ALTER COLUMN reply_to_activity_uuid TYPE uuid USING reply_to_activity_uuid::uuid;
+    ALTER COLUMN reply_to_activity_uuid TYPE uuid USING (reply_to_activity_uuid::uuid);
     """
     return data
   def rollback_sql():
