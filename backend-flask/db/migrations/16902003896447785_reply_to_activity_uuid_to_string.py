@@ -1,5 +1,4 @@
 from lib.db import db
-
 class ReplyToActivityUuidToStringMigration:
   def migrate_sql():
     data = """
@@ -7,10 +6,11 @@ class ReplyToActivityUuidToStringMigration:
     ALTER COLUMN reply_to_activity_uuid TYPE uuid USING reply_to_activity_uuid::uuid;
     """
     return data
+    
   def rollback_sql():
     data = """
     ALTER TABLE activities
-    ALTER COLUMN reply_to_activity_uuid TYPE integer USING (reply_to_activity_uuid::integer);
+    ALTER COLUMN reply_to_activity_uuid TYPE integer USING reply_to_activity_uuid::integer;
     """
     return data
 
@@ -21,5 +21,5 @@ class ReplyToActivityUuidToStringMigration:
   def rollback():
     db.query_commit(ReplyToActivityUuidToStringMigration.rollback_sql(),{
     })
-
+    
 migration = ReplyToActivityUuidToStringMigration
