@@ -3,13 +3,13 @@ import React from "react";
 import process from 'process';
 import { useParams } from 'react-router-dom';
 import {post} from 'lib/Requests';
-
 import FormErrors from 'components/FormErrors';
 
 export default function ActivityForm(props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
   const params = useParams();
+  const [errors, setErrors] = React.useState('');
 
   const classes = []
   classes.push('count')
@@ -26,13 +26,17 @@ export default function ActivityForm(props) {
     } else {
       payload_data.message_group_uuid = params.message_group_uuid
     }
-    post(url,payload_data,setErrors,function(){
-      console.log('data:',data)
-      if (data.message_group_uuid) {
-        console.log('redirect to message group')
-        window.location.href = `/messages/${data.message_group_uuid}`
-      } else {
-        props.setMessages(current => [...current,data]);
+    post(url,payload_data,{
+      auth: true,
+      setErrors: setErrors,
+      success: function(data){
+        console.log('data:',data)
+        if (data.message_group_uuid) {
+          console.log('redirect to message group')
+          window.location.href = `/messages/${data.message_group_uuid}`
+        } else {
+          props.setMessages(current => [...current,data]);
+        }
       }
     })
   }
