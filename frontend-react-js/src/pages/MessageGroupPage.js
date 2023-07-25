@@ -2,8 +2,8 @@ import './MessageGroupPage.css';
 import React from "react";
 import { useParams } from 'react-router-dom';
 
-import {checkAuth} from '../lib/CheckAuth';
 import {get} from 'lib/Requests';
+import {checkAuth} from 'lib/CheckAuth';
 
 import DesktopNavigation  from 'components/DesktopNavigation';
 import MessageGroupFeed from 'components/MessageGroupFeed';
@@ -20,15 +20,21 @@ export default function MessageGroupPage() {
 
   const loadMessageGroupsData = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
-    get(url,null,function(data){
-      setMessageGroups(data)
+    get(url,{
+      auth: true,
+      success: function(data){
+        setMessageGroups(data)
+      }
     })
   }
 
   const loadMessageGroupData = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${params.message_group_uuid}`
-    get(url,null,function(data){
-      setMessages(data)
+    get(url,{
+      auth: true,
+      success: function(data){
+        setMessages(data)
+      }
     })
   }
 

@@ -8,8 +8,8 @@ import FormErrors from 'components/FormErrors';
 export default function ActivityForm(props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
-  const params = useParams();
   const [errors, setErrors] = React.useState('');
+  const params = useParams();
 
   const classes = []
   classes.push('count')

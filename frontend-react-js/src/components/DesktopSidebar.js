@@ -33,9 +33,9 @@ export default function DesktopSidebar(props) {
       {suggested}
       {join}
       <footer>
-      <a href="/about">About!</a>
-      <a href="/terms-of-service">Terms of Service</a>
-      <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/about">About!</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/privacy-policy">Privacy Policy</a>
       </footer>
     </section>
   );
