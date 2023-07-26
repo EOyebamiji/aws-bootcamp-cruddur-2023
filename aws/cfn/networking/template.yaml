@@ -2,7 +2,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Description: |
-  Base networking components for the stack
+  The Base networking components for the stack
   - VPC
     - sets DNS hostname for EC2 Instances
     - Only IPV4, IPV6 is disabled

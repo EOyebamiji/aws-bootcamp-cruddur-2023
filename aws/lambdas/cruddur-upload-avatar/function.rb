@@ -4,13 +4,19 @@ require 'json'
 
 def handler(event:, context:)
   puts event
+  origin = event["headers"]["origin"]
+  puts("origin", origin)
+  dev_url = "https:\/\/3000-eoyebamiji-awsbootcampcru-(.+)\.gitpod\.io"
+  if /#{dev_url}/.match(origin).nil? # if there is no match return the prod domain
+    origin = "https://eoyebamiji.com"
+  end
   # return cors headers for preflight check
   if event['routeKey'] == "OPTIONS /{proxy+}"
     puts({step: 'preflight', message: 'preflight CORS check'}.to_json)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-eoyebamiji-awsbootcampc-q08j3buv7m8.ws-eu101.gitpod.io",
+        "Access-Control-Allow-Origin": origin,
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200
@@ -42,7 +48,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-eoyebamiji-awsbootcampc-q08j3buv7m8.ws-eu101.gitpod.io",
+        "Access-Control-Allow-Origin": origin,
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200, 
