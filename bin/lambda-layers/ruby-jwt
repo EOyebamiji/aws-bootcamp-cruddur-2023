@@ -1,5 +1,10 @@
 #! /usr/bin/bash
 
+CYAN='\033[1;36m'
+NO_COLOR='\033[0m'
+LABEL="== Lambda Layer for JWT =="
+printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
+
 gem i jwt -Ni /tmp/lambda-layers/ruby-jwt/ruby/gems/2.7.0
 cd /tmp/lambda-layers/ruby-jwt
 
