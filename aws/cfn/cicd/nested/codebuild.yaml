@@ -39,6 +39,7 @@ Resources:
       # even though we have No Artifacts, CodePipeline Demands both to be set as CODEPIPLINE
       Artifacts:
         Type: CODEPIPELINE
+      BadgeEnabled: true
       Environment:
         ComputeType: !Ref CodeBuildComputeType
         Image: !Ref CodeBuildImage
