@@ -6,6 +6,7 @@ phases:
       - echo "cd into $CODEBUILD_SRC_DIR/backend"
       - cd $CODEBUILD_SRC_DIR/backend-flask
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $IMAGE_URL
+      - npm install -g shieldfy/cli
   build:
     commands:
       - echo Build started on `date`
@@ -20,6 +21,9 @@ phases:
       - cd $CODEBUILD_SRC_DIR
       - echo "imagedefinitions.json > [{\"name\":\"$CONTAINER_NAME\",\"imageUri\":\"$IMAGE_URL/$REPO_NAME\"}]" > imagedefinitions.json
       - printf "[{\"name\":\"$CONTAINER_NAME\",\"imageUri\":\"$IMAGE_URL/$REPO_NAME\"}]" > imagedefinitions.json
+      - echo Creating build badge URL...
+      - SHIELD=$(shieldfy badge generate "AWS CodeBuild" "Passing" "green")
+      - echo "![Build Status]($SHIELD)" > build-badge.md
 
 env:
   variables:
@@ -31,3 +35,4 @@ env:
 artifacts:
   files:
     - imagedefinitions.json
+    - build-badge.md
