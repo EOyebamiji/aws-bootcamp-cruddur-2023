@@ -46,3 +46,6 @@ I refactored my codebase to render images in production, and also the included i
 ![HomeFeed Page](assets/Week-X/HomeFeed%20Image%20Render.png)
 
 ![Status Page](assets/Week-X/ProfileInfo%20Status.png)
+
+## Implement Buildbadge for CICD
+I tried to implement a build badge for our CICD pipeline via the CFN template. However, CodeBuild does not support build badges with the Amazon S3 source provider. Because AWS CodePipeline uses Amazon S3 for artifact transfers, build badges are not supported for build projects that are part of a pipeline created in CodePipeline.

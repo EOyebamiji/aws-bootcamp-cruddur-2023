@@ -39,6 +39,9 @@ Resources:
       # even though we have No Artifacts, CodePipeline Demands both to be set as CODEPIPLINE
       Artifacts:
         Type: CODEPIPELINE
+      #BadgeEnabled: true
+      #CodeBuild does not support build badges with the Amazon S3 source provider.
+      #Because AWS CodePipeline uses Amazon S3 for artifact transfers, build badges are not supported for build projects that are part of a pipeline created in CodePipeline.
       Environment:
         ComputeType: !Ref CodeBuildComputeType
         Image: !Ref CodeBuildImage
