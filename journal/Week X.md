@@ -39,3 +39,11 @@ After the deloyment of new features and implementation, i confirmed the CFN stac
 ![CFN CodePipeline](assets/Week-X/CFN%20CodeBuild.png)
 
 ![CFN CodeBuild](assets/Week-X/CFN%20CodePipeline.png)
+
+## Additional Cleanup
+I refactored my codebase to render images in prodcution, and also the included image rendering the activity feed to be dispalyed on the homepage.
+
+![HomeFeed Page](assets/Week-X/Activity%20Feed.png)
+
+![Status Page](assets/Week-X/ProfileInfo%20Status.png)
+
