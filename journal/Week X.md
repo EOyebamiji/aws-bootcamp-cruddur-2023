@@ -46,4 +46,3 @@ I refactored my codebase to render images in prodcution, and also the included i
 ![HomeFeed Page](assets/Week-X/Activity%20Feed.png)
 
 ![Status Page](assets/Week-X/ProfileInfo%20Status.png)
-

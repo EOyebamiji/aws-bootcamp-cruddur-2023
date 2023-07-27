@@ -20,14 +20,14 @@ At the start of the bootcamp you need to create a new Github Repository from thi
 
 The `/journal` directory contains
 
-- [X] [Week 0](journal/week0.md)
-- [X] [Week 1](journal/week1.md)
-- [X] [Week 2](journal/week2.md)
-- [X] [Week 3](journal/week3.md)
-- [X] [Week 4](journal/week4.md)
-- [X] [Week 5](journal/week5.md)
+- [X] [Week 0](journal/Week%200.md)
+- [X] [Week 1](journal/Week%201.md)
+- [X] [Week 2](journal/Week%202.md)
+- [X] [Week 3](journal/Week%203.md)
+- [X] [Week 4](journal/Week%204.md)
+- [X] [Week 5](journal/Week%205.md)
 - [X] [Week 6 - 7](journal/Week%206%20-%207.md)
-- [X] [Week 8](journal/week8.md)
-- [X] [Week 9](journal/week9.md)
+- [X] [Week 8](journal/Week%208.md)
+- [X] [Week 9](journal/Week%209.md)
 - [X] [Week 10 - 11](journal/Week%2010%20-%2011.md)
-- [ ] [Week X](journal/Week%20X.md)
+- [X] [Week X](journal/Week%20X.md)
