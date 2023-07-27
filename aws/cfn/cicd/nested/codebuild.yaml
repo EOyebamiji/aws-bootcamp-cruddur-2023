@@ -21,7 +21,7 @@ Parameters:
     Default: BUILD_GENERAL1_SMALL
   CodeBuildTimeoutMins:
     Type: Number
-    Default: 5
+    Default: 6
   BuildSpec:
     Type: String
     Default: 'buildspec.yaml'
