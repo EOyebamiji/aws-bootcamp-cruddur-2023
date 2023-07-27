@@ -15,13 +15,19 @@ export default function ActivityShowItem(props) {
     return null; // or display a loading indicator or an error message
   }
 
+  const avatarStyles = {
+    backgroundImage: `url("https://assets.crudderme.click/avatars/${props.activity.cognito_user_id}.jpg")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
+
   return (
     <div className="activity_item expanded">
       <div className="acitivty_main">
         <div className='activity_content_wrap'>
           <div className='activity_content'>
             {props.activity.handle && (
-              <Link className='activity_avatar' to={`/@${props.activity.handle}`} />
+              <Link className='activity_avatar' to={`/@${props.activity.handle}`} style={avatarStyles}></Link>
             )}
             <div className='activity_meta'>
               {props.activity.display_name && props.activity.handle && (
