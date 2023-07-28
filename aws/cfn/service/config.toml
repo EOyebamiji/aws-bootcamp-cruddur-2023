@@ -6,4 +6,4 @@ stack_name = 'CrdSrvBackendFlask'
 [parameters]
 EnvFrontendUrl = 'https://eoyebamiji.com'
 EnvBackendUrl = 'https://api.eoyebamiji.com'
-DDBMessageTable = 'CrdDdb-DynamoDBTable-1C524W35B2EW6'
+DDBMessageTable = 'CrdDdb-DynamoDBTable-PMIX1HI67XIE'

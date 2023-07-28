@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
   Backend Service
-    - Task Definition File
+    - Task Definition
     - Fargate Service
     - Task Role
     - Execution Role
@@ -91,7 +91,7 @@ Resources:
       LoadBalancers:
         - TargetGroupArn:
             Fn::ImportValue:
-              !Sub "${ClusterStack}BackendTargetGroup"
+              !Sub "${ClusterStack}BackendTGArn"
           ContainerName: 'backend-flask'
           ContainerPort: !Ref ContainerPort
       NetworkConfiguration:
@@ -109,7 +109,7 @@ Resources:
       PropagateTags: SERVICE
       ServiceConnectConfiguration:
         Enabled: true
-        Namespace: "Crud"
+        Namespace: "cruddur"
         # TODO - If you want to log
         # LogConfiguration
         Services:
@@ -154,7 +154,7 @@ Resources:
               - 'CMD-SHELL'
               - 'python /backend-flask/bin/health-check'
             Interval: 30
-            Timeout: 5
+            Timeout: 6
             Retries: 3
             StartPeriod: 60
           PortMappings:

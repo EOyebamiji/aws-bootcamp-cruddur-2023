@@ -132,7 +132,7 @@ Resources:
         
 #Private Subnet 1
 #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
-  SubnetPrv1:
+  SubnetPriv1:
     Type: AWS::EC2::Subnet
     Properties:
       CidrBlock: !Select [3, !Ref SubnetCidrBlocks]
@@ -142,11 +142,11 @@ Resources:
       VpcId: !Ref VPC
       Tags:
       - Key: Name
-        Value: !Sub "${AWS::StackName}SubnetPrv1"
+        Value: !Sub "${AWS::StackName}SubnetPriv1"
   
 #Private Subnet 2
 #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
-  SubnetPrv2:
+  SubnetPriv2:
     Type: AWS::EC2::Subnet
     Properties:
       CidrBlock: !Select [4, !Ref SubnetCidrBlocks]
@@ -156,11 +156,11 @@ Resources:
       VpcId: !Ref VPC
       Tags:
       - Key: Name
-        Value: !Sub "${AWS::StackName}SubnetPrv2"
+        Value: !Sub "${AWS::StackName}SubnetPriv2"
   
 #Private Subnet 3
 #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
-  SubnetPrv3:
+  SubnetPriv3:
     Type: AWS::EC2::Subnet
     Properties:
       CidrBlock: !Select [5, !Ref SubnetCidrBlocks]
@@ -170,7 +170,7 @@ Resources:
       VpcId: !Ref VPC
       Tags:
       - Key: Name
-        Value: !Sub "${AWS::StackName}SubnetPrv3"
+        Value: !Sub "${AWS::StackName}SubnetPriv3"
 
 #Subnet Route Association
   SubnetPub1RTAssociation:
@@ -191,17 +191,17 @@ Resources:
   SubnetPrv1RTAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref SubnetPrv1
+      SubnetId: !Ref SubnetPriv1
       RouteTableId: !Ref RouteTable
   SubnetPrv2RTAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref SubnetPrv2
+      SubnetId: !Ref SubnetPriv2
       RouteTableId: !Ref RouteTable
   SubnetPrv3RTAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref SubnetPrv3
+      SubnetId: !Ref SubnetPriv3
       RouteTableId: !Ref RouteTable
 
 
@@ -230,9 +230,9 @@ Outputs:
   PrivateSubnetIds:
     Value: !Join
       - ","
-      - - !Ref SubnetPrv1
-        - !Ref SubnetPrv2
-        - !Ref SubnetPrv3
+      - - !Ref SubnetPriv1
+        - !Ref SubnetPriv2
+        - !Ref SubnetPriv3
     Export:
       Name: !Sub "${AWS::StackName}PrivateSubnetIds"
   AvailabilityZones:
@@ -243,5 +243,3 @@ Outputs:
         - !Ref Az3
     Export:
       Name: !Sub "${AWS::StackName}AvailabilityZones"
-
-
