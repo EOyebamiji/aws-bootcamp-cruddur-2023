@@ -1,7 +1,7 @@
 [deploy]
 bucket = 'cfn-artifacts-007'
 region = 'us-east-1'
-stack_name = 'CrdDB'
+stack_name = 'CrdDb'
 
 [parameters]
 NetworkingStack = 'CrdNet'
